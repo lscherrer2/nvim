@@ -35,6 +35,7 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = "python",
   command = "setlocal indentexpr=",
 })
+
 -- Add python rulers
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "python",
@@ -43,18 +44,7 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
--- Trim trailing whitespace
-vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = "*",
-  callback = function()
-    local pos = vim.api.nvim_win_get_cursor(0)
-    vim.cmd([[
-      keepjumps keeppatterns silent! %s/\s\+$//e
-    ]])
-    vim.api.nvim_win_set_cursor(0, pos)
-  end,
-})
 
-
-
-
+-- Better leader characters
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
