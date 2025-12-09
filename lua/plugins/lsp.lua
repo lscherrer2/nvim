@@ -94,6 +94,7 @@ return {
             vim.lsp.config("lua_ls", require("lsp.lua_ls"))
             vim.lsp.config("clangd", require("lsp.clangd"))
             vim.lsp.config("rust_analyzer", require("lsp.rust_analyzer"))
+            vim.lsp.config("gopls", require("lsp.gopls"))
 
             local mlsp = require("mason-lspconfig")
             mlsp.setup({
