@@ -26,8 +26,12 @@ vim.opt.termguicolors = true
 
 -- Relative Line Numbers
 vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained", "InsertLeave" }, {
-  pattern = "*",
-  command = "set relativenumber",
+  callback = function()
+    local ft = vim.bo.filetype
+    if ft ~= "NvimTree" then
+      vim.opt.relativenumber = true
+    end
+  end,
 })
 
 -- Fix python indenting
