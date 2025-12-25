@@ -1,7 +1,4 @@
-require("config.defaults")
-require("config.keymaps")
-require("config.lazy")
-
-require("lang.python")
+require("config")
+require("lang")
 
 vim.cmd.colorscheme("gruvbox-material")
