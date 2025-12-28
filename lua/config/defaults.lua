@@ -11,4 +11,3 @@ vim.g.loaded_netrwPlugin = 1
 
 vim.opt.termguicolors = true
 vim.opt.relativenumber = true
-
