@@ -1,5 +1,6 @@
 require("config")
 require("lang")
 
-vim.o.background = "dark"
-vim.cmd.colorscheme("vscode")
+vim.cmd.colorscheme("gruvbox-material")
+
+vim.lsp.set_log_level("debug")

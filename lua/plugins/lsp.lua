@@ -27,6 +27,9 @@ return {
 			local cmp_close = function(fallback)
 				if cmp.visible() then
 					cmp.close()
+
+					-- Escape also puts the user in normal mode
+					vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), "n", true)
 				else
 					fallback()
 				end

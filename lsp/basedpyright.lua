@@ -4,7 +4,7 @@ return {
 		basedpyright = {
 			analysis = {
 				useLibraryCodeForTypes = true,
-				typeCheckingMode = "basic",
+				typeCheckingMode = "off",
 				diagnosticMode = "workspace",
 				autoSearchPath = true,
 				inlayHints = {
