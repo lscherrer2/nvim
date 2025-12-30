@@ -8,13 +8,19 @@ return {
 			"jay-babu/mason-nvim-dap.nvim",
 			"mason-org/mason-lspconfig.nvim",
 			"mfussenegger/nvim-dap-python",
+			"theHamsta/nvim-dap-virtual-text",
 		},
 		config = function()
 			local dap = require("dap")
 			local ui = require("dapui")
 
 			require("dapui").setup()
-			require("dap-python").setup("uv")
+			require("nvim-dap-virtual-text").setup()
+
+			require("dap-config.python")
+			require("dap-config.c")
+			require("dap-config.cpp")
+			require("dap-config.rust")
 
 			vim.keymap.set("n", "<leader>b", dap.toggle_breakpoint)
 			vim.keymap.set("n", "<leader>gb", dap.run_to_cursor)
