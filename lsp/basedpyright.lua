@@ -1,20 +1,11 @@
 return {
-	filetypes = { "python" },
+	on_attach = function()
+		print("basedpyright attached")
+	end,
 	settings = {
-		basedpyright = {
-			analysis = {
-				useLibraryCodeForTypes = true,
-				typeCheckingMode = "off",
-				diagnosticMode = "workspace",
-				autoSearchPath = true,
-				inlayHints = {
-					callArgumentNames = true,
-				},
-			},
-			python = {
-				venvPath = ".",
-				venv = ".venv",
-			},
+		python = {
+			venvPath = ".",
+			venv = ".venv",
 		},
 	},
 }
