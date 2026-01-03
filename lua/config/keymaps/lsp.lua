@@ -1,4 +1,4 @@
-vim.keymap.set("n", "<leader>q", vim.diagnostic.setqflist)
+vim.keymap.set("n", "<leader>qq", vim.diagnostic.setqflist)
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(ev)
 		local opts = { buffer = ev.buf, silent = true }

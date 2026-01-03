@@ -12,4 +12,10 @@ return {
 			vim.lsp.config("*", { capabilities = capabilities })
 		end,
 	},
+	{
+		"jglasovic/venv-lsp.nvim",
+		config = function()
+			require("venv-lsp").setup()
+		end,
+	},
 }
