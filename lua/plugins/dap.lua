@@ -1,3 +1,56 @@
+local lldb_config = {
+    {
+        name = "Launch",
+        type = "lldb",
+        request = "launch",
+        program = function()
+            return vim.fn.input(
+                "Path to executable: ",
+                vim.fn.getcwd() .. "/",
+                "file"
+            )
+        end,
+        cwd = "${workspaceFolder}",
+        stopOnEntry = false,
+        args = {},
+    },
+    {
+        name = "Launch with args",
+        type = "lldb",
+        request = "launch",
+        program = function()
+            return vim.fn.input(
+                "Path to executable: ",
+                vim.fn.getcwd() .. "/",
+                "file"
+            )
+        end,
+        cwd = "${workspaceFolder}",
+        stopOnEntry = false,
+        args = function()
+            local input = vim.fn.input("Args: ")
+            return vim.fn.split(input, " ")
+        end,
+    },
+}
+local rust_lldb_config = vim.tbl_extend("force", lldb_config, {
+    initCommands = function()
+        local rustc_sysroot =
+            vim.fn.trim(vim.fn.system("rustc --print sysroot"))
+        assert(
+            vim.v.shell_error == 0,
+            "failed to get rust sysroot using `rustc --print sysroot`: "
+                .. rustc_sysroot
+        )
+        local script_file = rustc_sysroot .. "/lib/rustlib/etc/lldb_lookup.py"
+        local commands_file = rustc_sysroot .. "/lib/rustlib/etc/lldb_commands"
+        return {
+            ([[!command script import '%s']]):format(script_file),
+            ([[command source '%s']]):format(commands_file),
+        }
+    end,
+})
+
 return {
     {
         "mfussenegger/nvim-dap",
@@ -19,47 +72,11 @@ return {
                 command = "/opt/homebrew/opt/llvm/bin/lldb-dap",
                 name = "lldb",
             }
-            local lldb_config = {
-                {
-                    name = "Launch",
-                    type = "lldb",
-                    request = "launch",
-                    program = function()
-                        return vim.fn.input(
-                            "Path to executable: ",
-                            vim.fn.getcwd() .. "/",
-                            "file"
-                        )
-                    end,
-                    cwd = "${workspaceFolder}",
-                    stopOnEntry = false,
-                    args = {},
-                },
-                {
-                    name = "Launch with args",
-                    type = "lldb",
-                    request = "launch",
-                    program = function()
-                        return vim.fn.input(
-                            "Path to executable: ",
-                            vim.fn.getcwd() .. "/",
-                            "file"
-                        )
-                    end,
-                    cwd = "${workspaceFolder}",
-                    stopOnEntry = false,
-                    args = function()
-                        local input = vim.fn.input("Args: ")
-                        return vim.fn.split(input, " ")
-                    end,
-                },
-            }
             dap.configurations.c = lldb_config
             dap.configurations.cpp = lldb_config
-            dap.configurations.rust = lldb_config
-
-            vim.keymap.set("n", "<leader>b", dap.toggle_breakpoint)
-            vim.keymap.set("n", "<leader>gb", dap.run_to_cursor)
+            dap.configurations.rust = rust_lldb_config
+            vim.keymap.set("n", "<leader>b", dap.toggle_breakpoint, { desc = "Toggle breakpoint" })
+            vim.keymap.set("n", "<leader>gb", dap.run_to_cursor, { desc = "Run to cursor" })
 
             vim.keymap.set(
                 "n",
@@ -104,7 +121,7 @@ return {
             ui.setup(opts)
             vim.keymap.set("n", "<leader>?", function()
                 ui.eval(nil, { enter = true })
-            end)
+            end, { desc = "Evaluate expression" })
             dap.listeners.before.attach.dapui_config = function()
                 ui.open()
             end

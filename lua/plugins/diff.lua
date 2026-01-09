@@ -23,6 +23,16 @@ return {
                 },
             })
 
+            -- Use consistent red/green highlighting instead of word-level diff
+            local function set_diff_highlights()
+                vim.api.nvim_set_hl(0, "MiniDiffOverContext", { link = "MiniDiffOverDelete" })
+                vim.api.nvim_set_hl(0, "MiniDiffOverChange", { link = "MiniDiffOverDelete" })
+                vim.api.nvim_set_hl(0, "MiniDiffOverContextBuf", { link = "MiniDiffOverAdd" })
+                vim.api.nvim_set_hl(0, "MiniDiffOverChangeBuf", { link = "MiniDiffOverAdd" })
+            end
+            set_diff_highlights()
+            vim.api.nvim_create_autocmd("ColorScheme", { callback = set_diff_highlights })
+
             vim.opt.autoread = false
             vim.opt.updatetime = 500
 

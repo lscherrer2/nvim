@@ -7,6 +7,7 @@ return {
         "hrsh7th/cmp-path",
         "hrsh7th/cmp-buffer",
         "hrsh7th/cmp-cmdline",
+        "ray-x/cmp-treesitter",
         "L3MON4D3/LuaSnip",
         "rafamadriz/friendly-snippets", -- optional but recommended
     },
@@ -80,6 +81,7 @@ return {
             sources = cmp.config.sources({
                 { name = "nvim_lsp" },
                 { name = "path" },
+                { name = "treesitter" },
                 { name = "buffer" },
                 { name = "luasnip" },
             }),
