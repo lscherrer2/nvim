@@ -63,39 +63,34 @@ return {
 
             vim.keymap.set(
                 "n",
-                "<leader>dc",
+                "<F1>",
                 dap.continue,
-                { desc = "dap continue" }
+                { desc = "DAP continue" }
             )
             vim.keymap.set(
                 "n",
-                "<leader>di",
+                "<F2>",
                 dap.step_into,
-                { desc = "dap step into" }
+                { desc = "DAP step into" }
             )
             vim.keymap.set(
                 "n",
-                "<leader>do",
+                "<F3>",
                 dap.step_over,
-                { desc = "dap step over" }
+                { desc = "DAP step over" }
             )
             vim.keymap.set(
                 "n",
-                "<leader>du",
+                "<F4>",
                 dap.step_out,
-                { desc = "dap step out" }
+                { desc = "DAP step out" }
             )
+            vim.keymap.set("n", "<F11>", dap.restart, { desc = "DAP restart" })
             vim.keymap.set(
                 "n",
-                "<leader>dr",
-                dap.restart,
-                { desc = "dap restart" }
-            )
-            vim.keymap.set(
-                "n",
-                "<leader>dt",
+                "<F12>",
                 dap.terminate,
-                { desc = "dap terminate" }
+                { desc = "DAP terminate" }
             )
         end,
     },
