@@ -1,6 +1,7 @@
 return {
     {
         "neovim/nvim-lspconfig",
+        dependencies = "nvim-treesitter/nvim-treesitter",
     },
     {
         "hrsh7th/cmp-nvim-lsp",
@@ -14,8 +15,6 @@ return {
     },
     {
         "jglasovic/venv-lsp.nvim",
-        config = function()
-            require("venv-lsp").setup()
-        end,
+        opts = {},
     },
 }

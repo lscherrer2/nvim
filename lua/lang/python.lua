@@ -1,6 +1,6 @@
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "python",
-    command = "setlocal indentexpr=",
+    command = "setlocal indentexpr= indentkeys= nosmartindent",
 })
 
 vim.api.nvim_create_autocmd("FileType", {
