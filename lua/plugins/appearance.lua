@@ -20,6 +20,10 @@ return {
                 theme = "auto",
             },
         },
+        config = function(_, opts)
+            require("lualine").setup(opts)
+            vim.opt.cmdheight = 0
+        end,
     },
     {
         "Mofiqul/vscode.nvim",
@@ -27,6 +31,22 @@ return {
             group_overrides = {
                 ["@keyword.operator"] = { fg = "#569CD6", bg = "NONE" },
                 ["@lsp.type.operator.cpp"] = {},
+            },
+        },
+    },
+    {
+        "AstroNvim/astrotheme",
+        opts = {
+            palette = "astrodark",
+            highlights = {
+                global = {
+                    modify_hl_groups = function(hl, c)
+                        hl.Normal = { bg = "#0a0a0a" }
+                        hl.NormalNC = { bg = "#0a0a0a" }
+                        hl.NormalFloat = { bg = "#0a0a0a" }
+                        hl.SignColumn = { bg = "#0a0a0a" }
+                    end,
+                },
             },
         },
     },

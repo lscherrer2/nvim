@@ -1,7 +1,6 @@
 return {
     {
         "mason-org/mason.nvim",
-        -- Ensure common formatters are installed via mason
         ensure_installed = {
             "prettier",
             "stylua",

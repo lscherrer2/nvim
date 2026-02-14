@@ -2,7 +2,34 @@ return {
     "nvim-telescope/telescope.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
+        local telescope = require("telescope")
         local builtin = require("telescope.builtin")
+        
+        telescope.setup({
+            defaults = {
+                file_ignore_patterns = {
+                    "^.git/",
+                    "^node_modules/",
+                    "^__pycache__/",
+                    "^%.cache/",
+                    "^%.venv/",
+                    "^venv/",
+                    "^%.npm/",
+                    "^%.yarn/",
+                },
+            },
+            pickers = {
+                find_files = {
+                    hidden = true,
+                },
+                live_grep = {
+                    additional_args = function()
+                        return { "--hidden" }
+                    end,
+                },
+            },
+        })
+        
         vim.keymap.set(
             "n",
             "<leader>ff",

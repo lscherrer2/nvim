@@ -10,6 +10,7 @@ return {
         "ray-x/cmp-treesitter",
         "L3MON4D3/LuaSnip",
         "rafamadriz/friendly-snippets", -- optional but recommended
+        "rafamadriz/friendly-snippets",
     },
     config = function()
         local cmp = require("cmp")
